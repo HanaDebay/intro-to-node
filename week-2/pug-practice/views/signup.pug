@@ -1,0 +1,68 @@
+doctype html
+head
+  meta(charset='UTF-8')
+  meta(name='viewport' content='width=device-width, initial-scale=1.0')
+  title MWF | Register User
+  link(rel='stylesheet' href='/css/style.css')
+header.site-header
+  h1 Mayondo Wood &amp; Furniture (MWF) Ltd
+  p.subtitle Register Manager &bull; Sales Agent
+main.container
+  section.tab-panel.active
+    .form-wrapper
+      form.card(action='/signup' method='POST' autocomplete='on' novalidate='')
+        h2 Register Manager / Sales Agent
+        .grid
+          .field
+            label(for='fullName')
+              | Full Name
+              span *
+            input#fullName(name='fullName' type='text' placeholder='e.g., Hana Debay' required='')
+          .field
+            label(for='role')
+              | Role
+              span *
+            select#role(name='role' required='')
+              option(value='' disabled='' selected='') Select role
+              option(value='manager') Manager
+              option(value='sales-agent') Sales Agent
+          .field
+            label(for='email')
+              | Email
+              span *
+            input#email(name='email' type='email' placeholder='manager@mwfuganda.com' required='')
+          .field
+            label(for='phone')
+              | Phone
+              span *
+            input#phone(name='phone' type='tel' placeholder='+256 7xx xxx xxx' required='' pattern='[+0-9\s-]{7,}')
+          .field
+            label(for='username')
+              | Username
+              span *
+            input#username(name='username' type='text' minlength='3' maxlength='24' required='')
+          .field
+            label(for='password')
+              | Password
+              span *
+            input#password(name='password' type='password' minlength='6' required='')
+          .field
+            label(for='confirmPassword')
+              | Confirm Password
+              span *
+            input#confirmPassword(name='confirmPassword' type='password' minlength='6' required='')
+          .field.optional(data-show-when='role=sales-agent')
+            label(for='agentId') Sales Agent ID (optional)
+            input#agentId(name='agentId' type='text' placeholder='SA-001')
+        .actions
+          button.btn.primary(type='submit') Create Account
+          button.btn.ghost(type='reset') Clear
+        p.hint By submitting, you agree that all provided information is accurate.
+      .form-image
+        img(src='/images/img2.jpg' alt='User Registration')
+footer.site-footer
+  small
+    | &copy; 
+    span#year
+    |  MWF Ltd &bull; All rights reserved.
+script(src='/script/script.js')

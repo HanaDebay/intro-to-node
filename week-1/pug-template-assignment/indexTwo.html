@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MWF | Registration & Stock</title>
+  <link rel="stylesheet" href="indexTwo.css" />
+</head>
+<body>
+  <header class="site-header">
+    <h1>Mayondo Wood & Furniture (MWF) Ltd</h1>
+    <p class="subtitle">Manager & Sales Agent Sign‑Up • Stock Registration</p>
+  </header>
+
+  <main class="container">
+    <!-- Tabs -->
+    <div class="tabs">
+      <button class="tab active" data-tab="userTab">Register User</button>
+      <button class="tab" data-tab="stockTab">Register Stock</button>
+    </div>
+
+    <!-- User Registration Form -->
+    <section id="userTab" class="tab-panel active" aria-labelledby="Register User">
+      <div class="form-wrapper">
+        <form class="card" action="/register-user" method="POST" autocomplete="on" novalidate>
+          <h2>Register Manager / Sales Agent</h2>
+
+          <div class="grid">
+            <div class="field">
+              <label for="fullName">Full Name<span>*</span></label>
+              <input id="fullName" name="fullName" type="text" placeholder="e.g., Jane Doe" required />
+            </div>
+
+            <div class="field">
+              <label for="role">Role<span>*</span></label>
+              <select id="role" name="role" required>
+                <option value="" disabled selected>Select role</option>
+                <option value="manager">Manager</option>
+                <option value="sales-agent">Sales Agent</option>
+              </select>
+            </div>
+
+            <div class="field">
+              <label for="email">Email<span>*</span></label>
+              <input id="email" name="email" type="email" placeholder="name@company.com" required />
+            </div>
+
+            <div class="field">
+              <label for="phone">Phone<span>*</span></label>
+              <input id="phone" name="phone" type="tel" placeholder="+256 7xx xxx xxx" required pattern="[+0-9\s-]{7,}" />
+            </div>
+
+            <div class="field">
+              <label for="username">Username<span>*</span></label>
+              <input id="username" name="username" type="text" minlength="3" maxlength="24" required />
+            </div>
+
+            <div class="field">
+              <label for="password">Password<span>*</span></label>
+              <input id="password" name="password" type="password" minlength="6" required />
+            </div>
+
+            <div class="field">
+              <label for="confirmPassword">Confirm Password<span>*</span></label>
+              <input id="confirmPassword" name="confirmPassword" type="password" minlength="6" required />
+            </div>
+
+            <div class="field optional" data-show-when="role=sales-agent">
+              <label for="agentId">Sales Agent ID (optional)</label>
+              <input id="agentId" name="agentId" type="text" placeholder="SA-001" />
+            </div>
+          </div>
+
+          <div class="actions">
+            <button type="submit" class="btn primary">Create Account</button>
+            <button type="reset" class="btn ghost">Clear</button>
+          </div>
+
+          <p class="hint">By submitting, you agree that all provided information is accurate.</p>
+        </form>
+        <div class="form-image">
+          <img src="pexels-rachel-claire-4846455.jpg" alt="User Registration" />
+        </div>
+      </div>
+    </section>
+
+    <!-- Stock Registration Form -->
+    <section id="stockTab" class="tab-panel" aria-labelledby="Register Stock">
+      <div class="form-wrapper">
+        <form class="card" action="/register-stock" method="POST" autocomplete="on" novalidate>
+          <h2>Register Stock Item</h2>
+
+          <div class="grid">
+            <div class="field">
+              <label for="productName">Product Name<span>*</span></label>
+              <input id="productName" name="productName" type="text" placeholder="e.g., Mukasa Hardwood Plank" required />
+            </div>
+
+            <div class="field">
+              <label for="productType">Product Type<span>*</span></label>
+              <select id="productType" name="productType" required>
+                <option value="" disabled selected>Select type</option>
+                <option value="timber">Timber</option>
+                <option value="poles">Poles</option>
+                <option value="hardwood">Hardwood</option>
+                <option value="softwood">Softwood</option>
+                <option value="furniture-home">Furniture • Home</option>
+                <option value="furniture-office">Furniture • Office</option>
+              </select>
+            </div>
+
+            <!-- Extra dropdown for home/office furniture -->
+            <div class="field" id="furnitureOptions" style="display:none;">
+              <label for="furnitureType">Furniture Type<span>*</span></label>
+              <select id="furnitureType" name="furnitureType">
+                <option value="" disabled selected>Select furniture type</option>
+                <option value="bed">Bed</option>
+                <option value="sofa">Sofa</option>
+                <option value="dining">Dining Table</option>
+                <option value="cupboard">Cupboard</option>
+                <option value="drawers">Drawers</option>
+                <option value="desk">Desk</option>
+                <option value="chair">Chair</option>
+                <option value="shelf">Shelf</option>
+                <option value="wardrobe">Wardrobe</option>
+                <option value="tv-stand">TV Stand</option>
+              </select>
+            </div>
+
+            <div class="field">
+              <label for="costPrice">Cost Price (UGX)<span>*</span></label>
+              <input id="costPrice" name="costPrice" type="number" inputmode="decimal" min="0" step="0.01" required />
+            </div>
+
+            <div class="field">
+              <label for="sellingPrice">Selling Price (UGX)<span>*</span></label>
+              <input id="sellingPrice" name="sellingPrice" type="number" inputmode="decimal" min="0" step="0.01" required />
+            </div>
+
+            <div class="field">
+              <label for="quantity">Quantity<span>*</span></label>
+              <input id="quantity" name="quantity" type="number" min="0" step="1" required />
+            </div>
+
+            <div class="field">
+              <label for="supplierName">Supplier Name<span>*</span></label>
+              <input id="supplierName" name="supplierName" type="text" placeholder="e.g., Kibaale Timbers Ltd" required />
+            </div>
+
+            <div class="field">
+              <label for="date">Date Received<span>*</span></label>
+              <input id="date" name="date" type="date" required />
+            </div>
+
+            <div class="field">
+              <label for="quality">Quality Grade<span>*</span></label>
+              <select id="quality" name="quality" required>
+                <option value="" disabled selected>Select quality</option>
+                <option value="A">A (Premium)</option>
+                <option value="B">B (Standard)</option>
+                <option value="C">C (Economy)</option>
+              </select>
+            </div>
+
+            <div class="field">
+              <label for="color">Color <span class="muted">(optional)</span></label>
+              <input id="color" name="color" type="text" placeholder="e.g., Natural / Walnut" />
+            </div>
+
+            <div class="field">
+              <label for="measurements">Measurements <span class="muted">(optional)</span></label>
+              <input id="measurements" name="measurements" type="text" placeholder="e.g., 2x4x12 ft / 180x60 cm" />
+            </div>
+          </div>
+
+          <div class="actions">
+            <button type="submit" class="btn primary">Save Stock</button>
+            <button type="reset" class="btn ghost">Clear</button>
+          </div>
+
+          <p class="hint">Ensure details match the delivery note before saving.</p>
+        </form>
+        <div class="form-image">
+          <img src="bg7.png" alt="Stock Registration" />
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <small>© <span id="year"></span> MWF Ltd • All rights reserved.</small>
+  </footer>
+
+  <script>
+    // Tab logic
+    const tabs = document.querySelectorAll('.tab');
+    const panels = document.querySelectorAll('.tab-panel');
+    tabs.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        tabs.forEach(b => b.classList.remove('active'));
+        panels.forEach(p => p.classList.remove('active'));
+        btn.classList.add('active');
+        document.getElementById(btn.dataset.tab).classList.add('active');
+      });
+    });
+
+    // Role-based optional field toggle
+    const roleSelect = document.getElementById('role');
+    const agentField = document.querySelector('[data-show-when="role=sales-agent"]');
+    const toggleAgentField = () => {
+      if (!roleSelect) return;
+      const show = roleSelect.value === 'sales-agent';
+      agentField.style.display = show ? '' : 'none';
+    };
+    if (roleSelect && agentField) {
+      toggleAgentField();
+      roleSelect.addEventListener('change', toggleAgentField);
+    }
+
+    // Password confirmation check
+    const userForm = document.querySelector('form[action="/register-user"]');
+    userForm?.addEventListener('submit', (e) => {
+      const pass = document.getElementById('password');
+      const confirm = document.getElementById('confirmPassword');
+      if (pass.value !== confirm.value) {
+        e.preventDefault();
+        alert('Passwords do not match.');
+        confirm.focus();
+      }
+    });
+
+    // Furniture dropdown toggle
+    const productTypeSelect = document.getElementById('productType');
+    const furnitureOptions = document.getElementById('furnitureOptions');
+    productTypeSelect.addEventListener('change', () => {
+      if (productTypeSelect.value === 'furniture-home' || productTypeSelect.value === 'furniture-office') {
+        furnitureOptions.style.display = '';
+      } else {
+        furnitureOptions.style.display = 'none';
+      }
+    });
+
+    // Footer year
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
+

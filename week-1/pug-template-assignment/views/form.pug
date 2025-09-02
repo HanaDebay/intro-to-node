@@ -1,0 +1,17 @@
+doctype html
+html
+  head
+    title User Form
+  body
+    h1 User Registration Form
+
+    form(action="/submit" method="POST")
+      label(for="name") Name:
+      input(type="text" name="name" required)
+      br
+
+      label(for="email") Email:
+      input(type="email" name="email" required)
+      br
+
+      button(type="submit") Submit
