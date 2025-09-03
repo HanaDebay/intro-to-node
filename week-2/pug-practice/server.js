@@ -5,6 +5,7 @@ const path = require("path");
 //import routes
 const classRoutes = require("./routes/classRoutes");
 const authRoutes = require("./routes/authRoutes");
+const stockRoutes = require("./routes/stockRoutes");
 //2. Instantiations
 const app = express();
 const port = 3000;
@@ -23,8 +24,10 @@ app.use(express.json()); // for JSON POST requests
 
 // 5. Routes
 //using imported routes
-app.use("/",classRoutes);
+app.use("/", classRoutes);
+app.use("/class", classRoutes);
 app.use("/", authRoutes);
+app.use("/", stockRoutes);
 
 
 

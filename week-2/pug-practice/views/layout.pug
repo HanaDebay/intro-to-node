@@ -1,0 +1,32 @@
+doctype html
+html
+  head
+    meta(charset='UTF-8')
+    meta(name='viewport' content='width=device-width, initial-scale=1.0')
+    title MWF | Register Stock
+    link(rel='stylesheet' href='/css/style.css')
+  body
+    // ✅ NAVIGATION BAR
+    nav.navbar
+      .container
+        a.navbar-brand(href='home.html') MWF Ltd
+        button.nav-toggle(type='button' aria-label='Toggle Menu')
+          span
+          span
+          span
+        .collapse#navbar-nav-dropdown
+          ul.navbar-nav
+            li.nav-item
+              a.nav-link(href='home.html') Home
+            li.nav-item
+              a.nav-link(href='registerAdmin.html') Register Admin
+            li.nav-item
+              a.nav-link(href='registerAgent.html') Register Agent
+            li.nav-item
+              a.nav-link(href='registerStock.html') Register Stock
+            li.nav-item
+              a.nav-link(href='products.html') Products
+            li.nav-item
+              a.nav-link(href='contact.html') Contact
+body 
+    block content 
