@@ -1,6 +1,9 @@
 //1. Dependencies
 const express = require('express');
 const path = require("path");
+const mongoose = require('mongoose');
+
+require('dotenv').config();
 
 //import routes
 const classRoutes = require("./routes/classRoutes");
@@ -11,6 +14,22 @@ const app = express();
 const port = 3000;
 
 //3. Configurations
+//settingup mongodb connection 
+mongoose.connect(process.env.DATABASE, { //referencing to the vaiable DATABASE from .env file
+  // useNewUrlParser: true,
+  // useUnifiedTopology: true
+});
+
+// testing the connection
+mongoose.connection
+  .on('open', () => {
+    console.log('Mongoose connection open');
+  })
+  .on('error', (err) => {
+    console.log(`Connection error: ${err.message}`);
+  });
+
+// setting view engin to pug
 app.set('view engine', 'pug');
 app.set('views',path.join(__dirname, 'views'));
 

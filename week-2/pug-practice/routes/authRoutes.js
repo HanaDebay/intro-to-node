@@ -1,5 +1,6 @@
 const express = require("express");
 const router = express.Router();
+const UserModel = require("../models/userModel");
 
 
 //getting the signup form
@@ -8,7 +9,9 @@ router.get("/signup", (req, res) => {
 });
 
 router.post("/signup", (req, res) => {
+  const user = new UserModel(req.body); //pick all the form data
   console.log(req.body)
+  user.save();
   res.redirect("/login"); //redirecting after signingup to login page
 });
 
