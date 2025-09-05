@@ -7,13 +7,11 @@ const signupSchema = new mongoose.Schema(
       type: String,
       required: true,
       trim: true,
-      minlength: 3,
-      maxlength: 50,
     },
     role: {
       type: String,
-      default: "manager",   // automatically set role
-      immutable: true,      // cannot be changed later
+      default: "Manager",  
+      immutable: true,     
     },
     email: {
       type: String,
@@ -33,14 +31,11 @@ const signupSchema = new mongoose.Schema(
       type: String,
       required: true,
       unique: true,
-      minlength: 3,
-      maxlength: 24,
       trim: true,
     },
     password: {
       type: String,
       required: true,
-      minlength: 6,
     },
   },
   { timestamps: true }

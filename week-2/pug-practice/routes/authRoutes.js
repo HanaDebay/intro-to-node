@@ -21,10 +21,12 @@ router.get("/login", (req, res) => {
 
 router.post("/login", (req, res) => {
   console.log(req.body)
-  res.redirect("/registerStock")
+  res.redirect("/managerDashboard")
 });
 
-
+router.get("/managerDashboard", (req, res) => {
+  res.render("managerDashboard");
+});
 
 
 
