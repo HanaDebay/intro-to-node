@@ -1,0 +1,101 @@
+extends layout 
+block content
+  header.site-header
+    h1 Mayondo Wood &amp; Furniture (MWF) Ltd
+    p.subtitle Stock Registration
+  main.container
+    section.tab-panel.active
+      .form-wrapper
+        form.card(action='/registerStock' method='POST' autocomplete='on' novalidate='')
+          h2 Register Stock Item
+          .grid
+            .field
+              label(for='productName')
+                | Product Name
+                span *
+              input#productName(name='productName' type='text' placeholder='e.g., Mukasa Hardwood Plank' required='')
+            .field
+              label(for='productType')
+                | Product Type
+                span *
+              select#productType(name='productType' required='')
+                option(value='' disabled='' selected='') Select type
+                option(value='timber') Timber
+                option(value='poles') Poles
+                option(value='hardwood') Hardwood
+                option(value='softwood') Softwood
+                option(value='furniture-home') Furniture &bull; Home
+                option(value='furniture-office') Furniture &bull; Office
+            // Extra dropdown for home/office furniture
+            #furnitureOptions.field(style='display:none;')
+              label(for='furnitureType')
+                | Furniture Type
+                span *
+              select#furnitureType(name='furnitureType')
+                option(value='' disabled='' selected='') Select furniture type
+                option(value='bed') Bed
+                option(value='sofa') Sofa
+                option(value='dining') Dining Table
+                option(value='cupboard') Cupboard
+                option(value='drawers') Drawers
+                option(value='desk') Desk
+                option(value='chair') Chair
+                option(value='shelf') Shelf
+                option(value='wardrobe') Wardrobe
+                option(value='tv-stand') TV Stand
+            .field
+              label(for='costPrice')
+                | Cost Price (UGX)
+                span *
+              input#costPrice(name='costPrice' type='number' min='0' step='0.01' required='')
+            .field
+              label(for='sellingPrice')
+                | Selling Price (UGX)
+                span *
+              input#sellingPrice(name='sellingPrice' type='number' min='0' step='0.01' required='')
+            .field
+              label(for='quantity')
+                | Quantity
+                span *
+              input#quantity(name='quantity' type='number' min='0' step='1' required='')
+            .field
+              label(for='supplierName')
+                | Supplier Name
+                span *
+              input#supplierName(name='supplierName' type='text' placeholder='e.g., Kibaale Timbers Ltd' required='')
+            .field
+              label(for='date')
+                | Date Received
+                span *
+              input#date(name='date' type='date' required='')
+            .field
+              label(for='quality')
+                | Quality Grade
+                span *
+              select#quality(name='quality' required='')
+                option(value='' disabled='' selected='') Select quality
+                option(value='A') A (Premium)
+                option(value='B') B (Standard)
+                option(value='C') C (Economy)
+            .field
+              label(for='color')
+                | Color 
+                span.muted (optional)
+              input#color(name='color' type='text' placeholder='e.g., Natural / Walnut')
+            .field
+              label(for='measurements')
+                | Measurements 
+                span.muted (optional)
+              input#measurements(name='measurements' type='text' placeholder='e.g., 2x4x12 ft / 180x60 cm')
+          .actions
+            button.btn.primary(type='submit') Save Stock
+            button.btn.ghost(type='reset') Clear
+          p.hint Ensure details match the delivery note before saving.
+        .form-image
+          img(src='/images/img1.png' alt='Stock Registration')
+  footer.site-footer
+    small
+      | &copy; 
+      span#year
+      |  MWF Ltd &bull; All rights reserved.
+  script(src='/script/script.js')
