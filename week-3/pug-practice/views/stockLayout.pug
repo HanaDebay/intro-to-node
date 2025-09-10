@@ -1,0 +1,33 @@
+doctype html
+html(lang="en")
+  head
+    meta(charset="UTF-8")
+    meta(name="viewport" content="width=device-width, initial-scale=1.0")
+    title MWF | #{title || 'Dashboard'}
+    link(rel="stylesheet", href="..public/css/layout.css")
+    link(rel="stylesheet", href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css")
+
+  body
+    header.navbar.navbar-expand-lg.navbar-dark.bg-dark
+      .container
+        a.navbar-brand(href="/") MWF Ltd
+        button.navbar-toggler(type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav")
+          span.navbar-toggler-icon
+        #navbarNav.collapse.navbar-collapse
+          ul.navbar-nav.ms-auto
+            li.nav-item
+              a.nav-link(href="/registerStock") Add Stock
+            li.nav-item
+              a.nav-link(href="/stocks") View Stock
+            li.nav-item
+              a.nav-link(href="/register-user") Add User
+            li.nav-item
+              a.nav-link(href="/user") View Users
+            li.nav-item
+              a.nav-link(href="/logout") Logout
+    .container.mt-4
+      block content
+    footer.text-center.mt-5.py-3.bg-light
+      small &copy; #{new Date().getFullYear()} MWF Ltd • All rights reserved.
+  
+    script(src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js")

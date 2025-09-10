@@ -8,7 +8,7 @@ const MongoStore = require("connect-mongo");
 
 require('dotenv').config();
 
-const UserModel = require("./models/userModel")
+const User = require("./models/userModel")
 
 //import routes
 //const classRoutes = require("./routes/classRoutes");
@@ -58,9 +58,9 @@ app.use(passport.initialize()); //intializes passport.js it adds the midlware
 app.use(passport.session()); //connects passport to the session created by the session
 
 //AUTHENTICATE WITH PASSPORT_LOCAL_STRATEGY
-passport.use(UserModel.createStrategy()); 
-passport.serializeUser(UserModel.serializeUser());
-passport.deserializeUser(UserModel.deserializeUser());
+passport.use(User.createStrategy()); 
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
 
 
 // 5. Routes

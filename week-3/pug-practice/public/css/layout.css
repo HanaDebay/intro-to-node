@@ -1,0 +1,113 @@
+/* ====== General Styles ====== */
+body {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f8f9fa;
+  color: #333;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ====== Navbar ====== */
+.navbar-brand {
+  font-weight: bold;
+  font-size: 1.3rem;
+  letter-spacing: 1px;
+}
+
+.navbar-dark .navbar-nav .nav-link {
+  color: #ddd;
+  transition: color 0.2s ease-in-out;
+}
+
+.navbar-dark .navbar-nav .nav-link:hover {
+  color: #fff;
+}
+
+/* ====== Containers & Cards ====== */
+.container {
+  flex: 1;
+}
+
+.card {
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+  border: none;
+  margin-bottom: 1.5rem;
+}
+
+.card-header {
+  font-weight: 600;
+  font-size: 1.1rem;
+  background: #0d6efd;
+  color: #fff;
+  border-radius: 10px 10px 0 0 !important;
+}
+
+/* ====== Tables ====== */
+.table {
+  background: #fff;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.table th {
+  background-color: #0d6efd;
+  color: #fff;
+  font-weight: 500;
+  text-transform: capitalize;
+}
+
+.table td {
+  vertical-align: middle;
+}
+
+/* ====== Buttons ====== */
+.btn-primary {
+  background-color: #0d6efd;
+  border: none;
+  border-radius: 6px;
+}
+
+.btn-primary:hover {
+  background-color: #0b5ed7;
+}
+
+/* ====== Footer ====== */
+footer {
+  background: #f1f3f5;
+  color: #555;
+  font-size: 0.9rem;
+}
+
+/* Table styles for display pages */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1rem;
+}
+
+table th, table td {
+    border: 1px solid #ddd;
+    padding: 0.8rem;
+    text-align: left;
+}
+
+table th {
+    background-color: #153858ff; /* similar to your button color */
+    color: #fff;
+}
+
+table tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+table tr:hover {
+    background-color: #e3f2fd;
+}
+
+.text-muted {
+    color: #6c757d;
+    margin-top: 1rem;
+    display: block;
+}
