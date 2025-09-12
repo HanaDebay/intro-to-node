@@ -1,17 +1,31 @@
 const express = require("express");
 const router = express.Router();
 const passport = require("passport");
+const multer = require("multer");
 
 const User = require("../models/userModel");
+
+//image upload configs
+let storage = multer.diskStorage({
+  destination: (req , file , cb) => {
+    cb(null, "public/uploads")
+  },
+   filename: (req , file , cb) => {
+    cb(null, file.originalname)
+  }
+})
+
+const upload = multer({storage: storage})
 
 //getting the signup form
 router.get("/register-user", (req, res) => {
   res.render("signup");
 });
 
-router.post("/register-user", async (req, res) => {
+router.post("/register-user", upload.single("profileImage")  , async (req, res) => {
   try {
     const user = new User(req.body); //pick all the form data
+    user.profileImage = req.file ? `/public/uploads/${req.file.filename} ` : null;
     console.log(req.body);
     let existingUser = await User.findOne({ email: req.body.email });
     if (existingUser) {
@@ -80,5 +94,17 @@ router.get("/logout", (req, res) => {
 //     res.redirect("/")
 //   });
 // });
+
+router.get("/display-user", async(req, res) => {
+  try {
+    let users = await User.find().sort({$natural:-1});
+    res.render("displayUser", {users});
+  console.log(users)
+  } catch (error) {
+    res.status(400).send("unable to fetch user data from the database")
+  }
+  
+});
+
 
 module.exports = router;

@@ -5,6 +5,8 @@ const mongoose = require('mongoose');
 const passport = require("passport");
 const expressSession = require("express-session");
 const MongoStore = require("connect-mongo");
+const moment = require("moment");
+const methodOverride = require("method-override");
 
 require('dotenv').config();
 
@@ -19,6 +21,7 @@ const app = express();
 const port = 3000;
 
 //3. Configurations
+app.locals.moment = moment;
 //settingup mongodb connection 
 mongoose.connect(process.env.DATABASE, { //referencing to the vaiable DATABASE from .env file
   // useNewUrlParser: true,
@@ -42,8 +45,11 @@ app.set('views',path.join(__dirname, 'views'));
 // 4. Middleware
 // Middleware to parse form data and JSON
 app.use(express.static(path.join(__dirname, 'public')));
+app.use("/public/uploads",  express.static(__dirname + "/public/uploads" ))
 app.use(express.urlencoded({ extended: true })); // for HTML form submissions
 app.use(express.json()); // for JSON POST requests
+app.use(methodOverride('_method'));
+
 // EXPRESS-SESSIONS CONFIGS
 app.use(expressSession({
   secret: process.env.SESSION_SECRET, 

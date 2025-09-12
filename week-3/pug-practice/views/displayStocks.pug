@@ -1,12 +1,7 @@
 extends stockLayout
-
 block content
-  header.site-header
-    h1 Mayondo Wood & Furniture (MWF) Ltd
-    p.subtitle Stock Inventory
-
-  main.container
-    if stocks.length
+  main.container.my-5
+    if items && items.length
       table.table.table-striped.table-bordered.mt-4
         thead.table-dark
           tr
@@ -22,24 +17,27 @@ block content
             th Color
             th Measurements
         tbody
-          each stock in stocks
-            tr
-              td= stock.productName
-              td= stock.productType
-              td= stock.furnitureType ? stock.furnitureType : "-"
-              td #{stock.costPrice.toLocaleString()}
-              td #{stock.sellingPrice.toLocaleString()}
-              td= stock.quantity
-              td= stock.supplierName
-              td= stock.date ? stock.date.toDateString() : "-"
-              td= stock.quality
-              td= stock.color || "-"
-              td= stock.measurements || "-"
+          if items.length
+            each item in items
+              tr
+                td #{item.productName}
+                td #{item.productType}
+                td #{item.furnitureType}
+                td #{item.costPrice.toLocaleString()}
+                td #{item.sellingPrice.toLocaleString()}
+                td #{item.quantity}
+                td #{item.supplierName}
+                td #{moment(item.date).format("DD-MM-YYYY")}
+                td #{item.quality}
+                td #{item.color || "-"}
+                td #{item.measurements || "-"}
+                td 
+                  a.btn.btn-warning(href=`/editstock/${item._id}`)
     else
       p.mt-4.text-muted No stock items found. Please register stock.
 
-  footer.site-footer
-    small
-      | © 
-      span#year
-      |  MWF Ltd • All rights reserved.
+    script.
+      // set footer year automatically
+      document.addEventListener("DOMContentLoaded", () => {
+        document.getElementById("year").textContent = new Date().getFullYear();
+      });

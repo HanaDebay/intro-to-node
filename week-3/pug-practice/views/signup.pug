@@ -13,7 +13,7 @@ html(lang="en")
     main.container
       section.tab-panel.active
         .form-wrapper
-          form.card#signupForm(action="/register-user" method="POST" autocomplete="on" novalidate)
+          form.card#signupForm(action="/register-user" method="POST" autocomplete="on" enctype="multipart/form-data")
             h2 Register User
             .grid
               .field
@@ -53,7 +53,10 @@ html(lang="en")
                 label(for="confirmPassword") Confirm Password
                   span *
                 input#confirmPassword(type="password" name="confirmPassword" minlength="6" required)
-
+              .field 
+                label(for='profileImage') Upload Profile Image
+                input#profileImage(type='file' name='profileImage' accept='image/*')
+              
             .actions
               button.btn.primary(type="submit") Create Account
               button.btn.ghost(type="reset") Clear

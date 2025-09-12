@@ -34,13 +34,10 @@ const signupSchema = new mongoose.Schema(
       unique: true,
       trim: true,
     },
-    // password: {
-    //   type: String,
-    //   required: true,
-    // },
-  },
-  
-  { timestamps: true }
+    profileImage:{
+    type: String
+    },
+  }
 );
 
 // Export Model

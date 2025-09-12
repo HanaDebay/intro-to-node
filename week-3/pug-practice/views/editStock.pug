@@ -1,0 +1,81 @@
+//- extends stockLayout
+
+//- block content
+//-   header.site-header
+//-     h1 Mayondo Wood & Furniture (MWF) Ltd
+//-     if isEdit
+//-       p.subtitle Edit Stock
+//-     else
+//-       p.subtitle Register Stock
+
+//-   main.container
+//-     section.tab-panel.active
+//-       .form-wrapper
+//-         form.card(
+//-           action=isEdit ? `/stocks/${stock._id}?_method=PUT` : "/stocks"
+//-           method="POST"
+//-           autocomplete="on"
+//-           novalidate=""
+//-         )
+//-           h2= isEdit ? "Edit Stock Item" : "Register Stock Item"
+//-           .grid
+//-             .field
+//-               label(for="productName") Product Name *
+//-               input#productName(type="text" name="productName" required value=stock.productName)
+//-             .field
+//-               label(for="productType") Product Type *
+//-               select#productType(name="productType" required)
+//-                 option(value="" disabled selected=!stock.productType) Select type
+//-                 option(value="timber" selected=stock.productType==="timber") Timber
+//-                 option(value="poles" selected=stock.productType==="poles") Poles
+//-                 option(value="hardwood" selected=stock.productType==="hardwood") Hardwood
+//-                 option(value="softwood" selected=stock.productType==="softwood") Softwood
+//-                 option(value="furniture-home" selected=stock.productType==="furniture-home") Furniture • Home
+//-                 option(value="furniture-office" selected=stock.productType==="furniture-office") Furniture • Office
+//-             #furnitureOptions.field(style=stock.productType?.startsWith("furniture") ? "" : "display:none;")
+//-               label(for="furnitureType") Furniture Type *
+//-               select#furnitureType(name="furnitureType")
+//-                 option(value="" disabled selected=!stock.furnitureType) Select furniture type
+//-                 option(value="bed" selected=stock.furnitureType==="bed") Bed
+//-                 option(value="sofa" selected=stock.furnitureType==="sofa") Sofa
+//-                 option(value="dining" selected=stock.furnitureType==="dining") Dining Table
+//-                 option(value="cupboard" selected=stock.furnitureType==="cupboard") Cupboard
+//-                 option(value="drawers" selected=stock.furnitureType==="drawers") Drawers
+//-                 option(value="desk" selected=stock.furnitureType==="desk") Desk
+//-                 option(value="chair" selected=stock.furnitureType==="chair") Chair
+//-                 option(value="shelf" selected=stock.furnitureType==="shelf") Shelf
+//-                 option(value="wardrobe" selected=stock.furnitureType==="wardrobe") Wardrobe
+//-                 option(value="tv-stand" selected=stock.furnitureType==="tv-stand") TV Stand
+//-             .field
+//-               label(for="costPrice") Cost Price (UGX) *
+//-               input#costPrice(type="number" name="costPrice" min="0" step="0.01" required value=stock.costPrice)
+//-             .field
+//-               label(for="sellingPrice") Selling Price (UGX) *
+//-               input#sellingPrice(type="number" name="sellingPrice" min="0" step="0.01" required value=stock.sellingPrice)
+//-             .field
+//-               label(for="quantity") Quantity *
+//-               input#quantity(type="number" name="quantity" min="0" step="1" required value=stock.quantity)
+//-             .field
+//-               label(for="supplierName") Supplier Name *
+//-               input#supplierName(type="text" name="supplierName" required value=stock.supplierName)
+//-             .field
+//-               label(for="date") Date Received *
+//-               input#date(type="date" name="date" required value=stock.date ? stock.date.toISOString().split('T')[0] : "")
+//-             .field
+//-               label(for="quality") Quality Grade *
+//-               select#quality(name="quality" required)
+//-                 option(value="" disabled selected=!stock.quality) Select quality
+//-                 option(value="A" selected=stock.quality==="A") A (Premium)
+//-                 option(value="B" selected=stock.quality==="B") B (Standard)
+//-                 option(value="C" selected=stock.quality==="C") C (Economy)
+//-             .field
+//-               label(for="color") Color (optional)
+//-               input#color(type="text" name="color" value=stock.color)
+//-             .field
+//-               label(for="measurements") Measurements (optional)
+//-               input#measurements(type="text" name="measurements" value=stock.measurements)
+
+//-           .actions
+//-             button.btn.primary(type="submit")= isEdit ? "Update Stock" : "Save Stock"
+//-             button.btn.ghost(type="reset") Clear
+//-           p.hint Ensure details match the delivery note before saving.

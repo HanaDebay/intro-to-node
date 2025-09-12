@@ -1,8 +1,9 @@
 const express = require("express");
 const router = express.Router();
 const StockModel = require("../models/stockModel");
+const {ensureAuthenticated, ensureManager } = require("../middleware/auth");
 
-router.get("/registerStock", (req, res) => {
+router.get("/registerStock",  (req, res) => {
   res.render("register-stock");
 });
 
@@ -21,6 +22,18 @@ router.post("/registerStock", async (req, res) => {
 
 router.get("/manager-dashboard", (req, res) => {
   res.render("managerDashboard");
+});
+
+//GETTING STOCK FROM THE DATABASE
+router.get("/view-stock", async(req, res) => {
+  try {
+    let items = await StockModel.find().sort({$natural:-1});
+    res.render("displayStocks", {items});
+  console.log(items)
+  } catch (error) {
+    res.status(400).send("unable to fetch data from the database")
+  }
+  
 });
 
 

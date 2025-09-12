@@ -1,59 +1,32 @@
-extends userLayout
-
+extends userLayout 
 block content
-  header.site-header
+  header.site-header.bg-dark.text-white.py-3.text-center
     h1 Mayondo Wood & Furniture (MWF) Ltd
-    p.subtitle Register Manager / Sales Agent
+    p.subtitle User Management
 
-  main.container
-    section.tab-panel.active
-      .form-wrapper
-        form.card#signupForm(action="/register-user" method="POST" autocomplete="on" novalidate)
-          h2 Register User
-          .grid
-            .field
-              label(for="fullName") Full Name
-                span *
-              input#fullName(type="text" name="fullName" placeholder="e.g., Hana Debay" required)
+  main.container.my-5
+    if users && users.length
+      table.table.table-striped.table-bordered.mt-4
+        thead.table-dark
+          tr
+            th Name
+            th Email
+            th Role
+            th Phone
+            th Date Registered
+        tbody
+          each user in users
+            tr
+              td #{user.fullName}
+              td #{user.email}
+              td #{user.role}
+              td #{user.phone || "-"}
+              td #{moment(user.createdAt).format("DD-MM-YYYY")}
+    else
+      p.mt-4.text-muted No users found. Please register a user.
 
-            .field
-              label(for="email") Email
-                span *
-              input#email(type="email" name="email" placeholder="user@mwfuganda.com" required)
-
-            .field
-              label(for="phone") Phone
-                span *
-              input#phone(type="tel" name="phone" placeholder="+256 7xx xxx xxx" required pattern="[+0-9\s-]{7,}")
-
-            .field
-              label(for="username") Username
-                span *
-              input#username(type="text" name="username" minlength="3" maxlength="24" required)
-
-            .field
-              label(for="role") Role
-                span *
-              select#role(name="role" required)
-                option(value="") -- Select Role --
-                option(value="Manager") Manager
-                option(value="Sales-Agent") Sales Agent
-
-            .field
-              label(for="password") Password
-                span *
-              input#password(type="password" name="password" minlength="6" required)
-
-            .field
-              label(for="confirmPassword") Confirm Password
-                span *
-              input#confirmPassword(type="password" name="confirmPassword" minlength="6" required)
-
-          .actions
-            button.btn.primary(type="submit") Create Account
-            button.btn.ghost(type="reset") Clear
-
-          p.hint By submitting, you agree that all provided information is accurate.
-
-        .form-image
-          img(src="/images/img2.jpg" alt="User Registration")
+    script.
+      // set footer year automatically
+      document.addEventListener("DOMContentLoaded", () => {
+        document.getElementById("year").textContent = new Date().getFullYear();
+      });
